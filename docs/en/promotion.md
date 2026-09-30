@@ -54,13 +54,15 @@ This is a checkable explanation of the result. The user does not need to read ev
 
 ## What has been tested
 
-The Chinese skill passed a format check and three isolated scenarios:
+The initial Chinese version passed a format check and three isolated scenarios:
 
 1. With complete data and definitions, calculate directly and detect a stale summary.
 2. With missing business definitions, identify the gaps without inventing a final maintenance list.
 3. When asked only to prepare announcement materials, deliver a draft and missing items without claiming publication.
 
 These tests used synthetic inputs. Each evaluator received no expected answer; the maintainer checked the output afterward. Inputs and result summaries are available in the repository for others to try with their own models.
+
+Later revisions added rules for limiting change scope and defining completion criteria. Both language versions passed format validation, but those additions have not been separately behavior-tested.
 
 There is no controlled experiment or long-term usage study, so these three runs do not support a percentage improvement in reliability. They show that the agent chose the expected behavior in three bounded scenarios.
 

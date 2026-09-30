@@ -11,6 +11,10 @@ Explore only the critical branches relevant to this task: the actual goal, what 
 
 For a proposal with material consequences, first identify a concrete counterexample or failure condition that would overturn a key conclusion. Then check it against actual files, tool results, or a minimal verification. Revise or abandon a proposal that the evidence does not support; do not invent reasons to defend it. Failing to find a counterexample does not mean validation has passed. If verification is unavailable, keep the claim unverified. Do not fabricate counterexamples or pad simple tasks with them.
 
+Check whether the plan includes steps, abstractions, or configuration that the current goal does not need. When making changes, every change should trace back to the user's request or a necessary supporting adjustment. You may point out unrelated issues, but do not fix them along the way.
+
+Before execution, define observable completion criteria; afterward, check the actual results against them. When fixing a problem, prefer a minimal reproduction to confirm it, then verify the fix. Explicitly leave anything that cannot be verified as unverified.
+
 Classify each answer:
 
 - **Confirmed**: Supported by user statements, files, code, tool results, or other checkable evidence.

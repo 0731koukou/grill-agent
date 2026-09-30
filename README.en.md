@@ -53,6 +53,8 @@ flowchart TD
 
 The current executing agent carries out these steps. The skill does not require a separate reviewer agent.
 
+Before making changes, it also checks for unnecessary steps, abstractions, or configuration, limits changes to the task's scope, and defines observable completion criteria. When fixing a problem, it prefers a minimal reproduction, then checks the result of the fix.
+
 ### Three answer categories determine the next step
 
 | Category | Basis | Next step |
@@ -157,7 +159,9 @@ The idea originated from `grill-me` / `grilling` in [Matt Pocock's skills collec
 
 ## What has been verified
 
-On 2026-09-29, the Chinese skill passed a format check and three isolated behavioral scenarios using synthetic inputs. Each independent evaluator received the skill and scenario materials without the expected answer. The maintainer then checked the outputs.
+On 2026-09-29, the initial Chinese version passed a format check and three isolated behavioral scenarios using synthetic inputs. Each independent evaluator received the skill and scenario materials without the expected answer. The maintainer then checked the outputs.
+
+On 2026-09-30, both language versions gained constraints on change scope and completion criteria. The translations were reviewed and both versions passed format validation; these additions have not been separately behavior-tested. The table below retains the initial version's test results.
 
 | Scenario | Observed result |
 |---|---|
