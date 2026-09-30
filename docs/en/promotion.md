@@ -1,6 +1,6 @@
 # I built a skill that asks the agent to question itself first
 
-[简体中文](推广介绍.md) | **English**
+[简体中文](../zh/推广介绍.md) | **English**
 
 One frustrating part of working with an AI agent is answering questions that the project already answers. The code, configuration, and documentation are there, yet the agent hands you a questionnaire. Once you finish, another round of confirmation begins. Meanwhile, the assumption that matters most may never get checked.
 
@@ -72,7 +72,7 @@ If you frequently ask agents to review plans, change code, or analyze data, this
 
 The core is one `SKILL.md`, with no separate service or dedicated API. The Chinese version has been installed and explicitly used in local Codex. Other hosts that support skill files may need different installation steps; compatibility has not been individually tested.
 
-See the [English README](README.en.md) for installation. Choose one language version, then start with a small task that already has supporting material:
+See the [English README](../../README.en.md) for installation. Choose one language version, then start with a small task that already has supporting material:
 
 ```text
 $grill-agent

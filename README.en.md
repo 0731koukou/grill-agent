@@ -6,7 +6,7 @@
 
 `grill-agent` is a lightweight Agent Skill for reviewing plans, changing code, and analyzing data. It asks the executing agent to identify questions that matter, read the evidence, and check what could invalidate its conclusion before deciding whether to proceed, revise the plan, or ask the user for a decision.
 
-The core is a single [SKILL.md](en/grill-agent/SKILL.md). There is no service, database, or additional model API. The host agent supplies file access, tools, and verification capabilities.
+The core is a single [SKILL.md](skills/en/grill-agent/SKILL.md). There is no service, database, or additional model API. The host agent supplies file access, tools, and verification capabilities.
 
 ```text
 $grill-agent
@@ -15,7 +15,7 @@ check it against the available material, and give your conclusion
 with at most three key pieces of evidence. Review only for now.
 ```
 
-[Skill instructions](en/grill-agent/SKILL.md) · [Detailed introduction and shareable copy](PROMOTION.en.md) · [Three scenario tests](TESTS.en.md)
+[Skill instructions](skills/en/grill-agent/SKILL.md) · [Detailed introduction and shareable copy](docs/en/promotion.md) · [Three scenario tests](docs/en/tests.md)
 
 ## What it addresses
 
@@ -85,8 +85,8 @@ These records explain the evidence and decisions; they do not request the model'
 
 | Language | Skill file |
 |---|---|
-| Chinese | [SKILL.md](SKILL.md) |
-| English | [en/grill-agent/SKILL.md](en/grill-agent/SKILL.md) |
+| Chinese | [SKILL.md](skills/zh/grill-agent/SKILL.md) |
+| English | [skills/en/grill-agent/SKILL.md](skills/en/grill-agent/SKILL.md) |
 
 Both versions use the name `grill-agent` and express the same rules. Install only one. Chinese is the source version; English is its translation. Future rule changes should be made in Chinese first and reflected in English. There is no automated translation or synchronization service.
 
@@ -97,7 +97,7 @@ Give Codex this request for the English version:
 ```text
 $skill-installer
 Install the skill from https://github.com/0731koukou/grill-agent
-using the path en/grill-agent. The skill name is grill-agent.
+using the path skills/en/grill-agent. The skill name is grill-agent.
 Install only this English version.
 ```
 
@@ -165,7 +165,7 @@ On 2026-09-29, the Chinese skill passed a format check and three isolated behavi
 | Missing valid-status and severity definitions | Did not invent a final maintenance list; grouped the missing definitions into questions |
 | Request only to prepare announcement materials | Produced a draft and identified missing access and authorization information without claiming publication |
 
-See [test records](TESTS.en.md) for inputs, acceptance checks, and result summaries. These observations apply to those three scenarios. There was no no-skill control group, cross-model evaluation, or repeated sampling, so they do not establish reductions in hallucinations, time savings, or accuracy improvements. The English test document translates those records; it does not report new English-version runs.
+See [test records](docs/en/tests.md) for inputs, acceptance checks, and result summaries. These observations apply to those three scenarios. There was no no-skill control group, cross-model evaluation, or repeated sampling, so they do not establish reductions in hallucinations, time savings, or accuracy improvements. The English test document translates those records; it does not report new English-version runs.
 
 ## Limits
 
@@ -176,3 +176,18 @@ See [test records](TESTS.en.md) for inputs, acceptance checks, and result summar
 - Self-checks do not replace testing, field validation, or professional judgment.
 
 If the agent asks questions that already have answers, proceeds on unsupported assumptions, or reports checks without evidence, please open an issue. Include a shareable task, minimal inputs, actual output, and expected behavior. Remove credentials and private data.
+
+## Repository layout
+
+```text
+README.md          Chinese entry
+README.en.md       English entry
+skills/
+  zh/grill-agent/  Chinese skill (SKILL.md)
+  en/grill-agent/  English skill (SKILL.md)
+docs/
+  zh/              Chinese introduction and test records
+  en/              English introduction and test records
+```
+
+Install only `skills/zh/grill-agent` or `skills/en/grill-agent`. Copy the selected skill folder, not the entire repository, into a skill discovery directory.

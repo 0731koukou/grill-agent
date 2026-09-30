@@ -6,7 +6,7 @@
 
 `grill-agent` 是一份轻量的 Agent Skill。遇到方案、代码修改或分析任务时，它要求执行智能体先找出关键疑点，读取证据，检查什么情况会推翻原来的判断，再决定继续执行、修改方案，还是向用户补充提问。
 
-核心只有一份 [SKILL.md](SKILL.md)。没有运行服务、数据库或额外模型接口；查文件、运行检查等能力由宿主智能体提供。
+核心只有一份 [SKILL.md](skills/zh/grill-agent/SKILL.md)。没有运行服务、数据库或额外模型接口；查文件、运行检查等能力由宿主智能体提供。
 
 ```text
 $grill-agent
@@ -14,7 +14,7 @@ $grill-agent
 给出结论和最多 3 条关键证据。本次只做评估。
 ```
 
-[查看技能原文](SKILL.md) · [看详细介绍与推广文案](推广介绍.md) · [看三组场景测试](测试记录.md)
+[查看技能原文](skills/zh/grill-agent/SKILL.md) · [看详细介绍与推广文案](docs/zh/推广介绍.md) · [看三组场景测试](docs/zh/测试记录.md)
 
 ## 它想解决什么
 
@@ -72,9 +72,11 @@ flowchart TD
 
 重要决策最多给出 3 条简短记录：
 
-> **关键追问：**旧摘要能代表本批告警吗？  
-> **证据：**约定文件说明摘要属于上一批；本批 CSV 的 A1、A2、A5 尚未关闭。  
-> **决定：**用本批原始记录重算，不沿用全零结果。
+> **关键追问：** 旧摘要能代表本批告警吗？
+>
+> **证据：** 约定文件说明摘要属于上一批；本批 CSV 的 A1、A2、A5 尚未关闭。
+>
+> **决定：** 用本批原始记录重算，不沿用全零结果。
 
 记录用于说明依据和决定，不要求展示模型的全部内部推理。
 
@@ -84,8 +86,8 @@ flowchart TD
 
 | 语言 | 技能文件 |
 |---|---|
-| 中文 | [SKILL.md](SKILL.md) |
-| English | [en/grill-agent/SKILL.md](en/grill-agent/SKILL.md) |
+| 中文 | [SKILL.md](skills/zh/grill-agent/SKILL.md) |
+| English | [skills/en/grill-agent/SKILL.md](skills/en/grill-agent/SKILL.md) |
 
 两个版本的技能名称均为 `grill-agent`，规则一致，安装时二选一。中文为标准源，英文为翻译版；后续规则变更先改中文，再同步英文。本仓库没有自动翻译或同步服务。英文安装方法见 [English README](README.en.md)。
 
@@ -96,7 +98,8 @@ flowchart TD
 ```text
 $skill-installer
 从 https://github.com/0731koukou/grill-agent 安装技能。
-SKILL.md 位于仓库根目录，技能名称为 grill-agent。
+技能目录为 skills/zh/grill-agent，名称为 grill-agent。
+只安装这个中文版。
 ```
 
 也可以只下载本仓库的 `SKILL.md`，放入 Codex 支持的技能目录，保持 `grill-agent/SKILL.md` 结构。当前官方文档列出的用户级目录是 `~/.agents/skills/`，项目级目录是 `.agents/skills/`。不要在多个发现目录重复放置同名副本。安装后若未出现，检查技能列表，必要时重启宿主。参见 [OpenAI 官方技能文档](https://learn.chatgpt.com/docs/build-skills)。
@@ -162,7 +165,7 @@ $grill-agent
 | 缺少有效告警与严重度定义 | 没有编造最终维修名单，集中提出缺失口径 |
 | 仅要求整理公告材料 | 生成待核对稿，指出入口与授权资料缺项，没有声称已经发布 |
 
-输入、验收方式及结果摘要见 [测试记录](测试记录.md)。这些测试表明这三个场景的行为符合预期；没有无技能对照组、跨模型评测或多次重复统计，不能据此声称“降低了多少幻觉”“节省了多少时间”或“准确率提升了多少”。
+输入、验收方式及结果摘要见 [测试记录](docs/zh/测试记录.md)。这些测试表明这三个场景的行为符合预期；没有无技能对照组、跨模型评测或多次重复统计，不能据此声称“降低了多少幻觉”“节省了多少时间”或“准确率提升了多少”。
 
 ## 使用边界
 
@@ -173,3 +176,18 @@ $grill-agent
 - 不能以自检代替测试、现场验证或专业判断。
 
 如果你遇到它反复问已有答案、凭假设推进，或输出了没有证据的“自检记录”，欢迎提交 Issue。附上可公开的任务、最小输入、实际输出和你期望的行为即可，请去掉凭据和私人数据。
+
+## 仓库目录
+
+```text
+README.md          中文入口
+README.en.md       English entry
+skills/
+  zh/grill-agent/  中文技能（SKILL.md）
+  en/grill-agent/  English skill (SKILL.md)
+docs/
+  zh/              中文推广介绍、测试记录
+  en/              English introduction and test records
+```
+
+安装时选择 `skills/zh/grill-agent` 或 `skills/en/grill-agent`，只复制所选技能目录；不要把整个仓库放入技能发现目录。

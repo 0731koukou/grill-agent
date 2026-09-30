@@ -1,6 +1,6 @@
 # grill-agent scenario test records
 
-[简体中文](测试记录.md) | **English**
+[简体中文](../zh/测试记录.md) | **English**
 
 Test date: 2026-09-29. This report summarizes retained scenario inputs and execution results. Output excerpts are condensed, not complete execution logs.
 
