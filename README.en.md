@@ -29,6 +29,7 @@ Useful for:
 - **Code changes:** inspect the actual entry point, callers, and failure conditions before editing.
 - **Data analysis:** distinguish source records, stale summaries, and undefined business rules.
 - **Delivery checks:** establish what has been verified and what still lacks evidence.
+- **Task closeout:** after verifying deliverables, remove this task's disposable intermediate artifacts within the authorized scope.
 
 Simple tasks, such as translating a sentence or fixing an obvious typo, do not need a self-review table.
 
@@ -48,7 +49,8 @@ flowchart TD
     H -->|Answer received| I
     I -->|Yes| B
     I -->|No| J["Complete the requested review or proceed with authorized work"]
-    J --> K["At most 3 records: question → evidence → decision"]
+    J --> L["Verify deliverables; if temporary artifacts exist, complete authorized cleanup and check references"]
+    L --> K["At most 3 records: question → evidence → decision"]
 ```
 
 The current executing agent carries out these steps. The skill does not require a separate reviewer agent.
@@ -82,6 +84,25 @@ For important decisions, provide at most three brief records:
 > **Decision:** Recompute from the current records instead of reusing the all-zero result.
 
 These records explain the evidence and decisions; they do not request the model's complete internal reasoning.
+
+### Task closeout: temporary-file cleanup
+
+Before creating files, distinguish final deliverables, files needed for maintenance or reproduction, and disposable intermediate artifacts. Follow the project's directory conventions. If none exist, use a separate `work/<task-name>/` directory and track purpose and ownership in task context, without creating another cleanup manifest.
+
+The closeout order is: **verify deliverables → clean up authorized temporary files → check deliverables and references → report results**. Skip cleanup if the task created no temporary files.
+
+| File | Disposition |
+|---|---|
+| One-off probe scripts, debug output with no remaining diagnostic purpose, intermediate conversions | Remove only if created by this task, no longer needed, free of dependencies, and authorized for deletion |
+| Drafts and preview copies superseded by the final result | First confirm that required content is in the final result and the same conditions hold |
+| Regression tests, necessary test data, generation scripts required for reproduction | Keep |
+| Images, styles, or data referenced by deliverables | Keep; resolve the dependency before considering removal |
+| Unresolved-issue diagnostics, recovery backups, files used by running tasks | Keep |
+| User source material, pre-existing files, other tasks' files | Exclude from this task's automatic cleanup |
+
+Names containing `test`, `tmp`, or `draft`, or untracked Git status, do not establish disposability. Before deletion, check resolved absolute paths and the allowed scope; symbolic links and directory junctions must not extend cleanup beyond it. Keep files whose ownership, purpose, or permissions are unclear and report them together.
+
+Deletion follows existing user authorization and host rules. If confirmation is required, list candidates and reasons, including numbering or risk levels when the host requires them. Do not request authorization again for the same already-authorized scope. The skill grants no deletion permissions and does not automatically sweep an entire workspace. After cleanup, check affected deliverables and references and briefly report removed and pending items.
 
 ## Installation and use
 
@@ -164,6 +185,8 @@ The idea originated from `grill-me` / `grilling` in [Matt Pocock's skills collec
 On 2026-09-29, the initial Chinese version passed a format check and three isolated behavioral scenarios using synthetic inputs. Each independent evaluator received the skill and scenario materials without the expected answer. The maintainer then checked the outputs.
 
 On 2026-09-30, both language versions gained rules for change scope, completion criteria, full delivery, preserving useful protections, and stopping verification. The translations were reviewed and both versions passed format validation; these additions have not been separately behavior-tested. The table below retains the initial version's test results.
+
+Task-closeout cleanup rules were added the same day and checked in one independent, read-only simulation using the Chinese skill. Of 10 candidates, 2 were selected for removal; deliverable dependencies, reproduction scripts, regression tests, other owners' files, in-use files, and an out-of-scope junction were retained. This checked selection and closeout decisions, with no real deletion. The English version received a translation review and format validation. See the [cleanup simulation record](docs/en/tests.md#task-closeout-cleanup-read-only-simulation) for the inputs and results.
 
 | Scenario | Observed result |
 |---|---|

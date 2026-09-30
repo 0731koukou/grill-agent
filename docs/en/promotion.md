@@ -42,6 +42,10 @@ If the evidence does not support the plan, revise or abandon it. If verification
 
 This does not require a long procedure for every small task. Fixing an obvious typo does not need three invented risks.
 
+## Handle temporary artifacts at closeout
+
+The skill now distinguishes final results, maintenance material, and disposable intermediate artifacts. After verifying deliverables, it cleans up files created by this task whose purpose has ended, within existing deletion authorization. Regression tests, reproduction scripts, and referenced assets remain. The Chinese cleanup rules received one read-only simulation with no real deletion; actions still follow host permissions. See the [README](../../README.en.md#task-closeout-temporary-file-cleanup) for the scope.
+
 ## What the user sees
 
 For important decisions, the result includes at most three short records:
