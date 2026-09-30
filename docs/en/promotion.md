@@ -62,7 +62,7 @@ The initial Chinese version passed a format check and three isolated scenarios:
 
 These tests used synthetic inputs. Each evaluator received no expected answer; the maintainer checked the output afterward. Inputs and result summaries are available in the repository for others to try with their own models.
 
-Later revisions added rules for limiting change scope and defining completion criteria. Both language versions passed format validation, but those additions have not been separately behavior-tested.
+Later revisions added rules for limiting change scope, defining completion criteria, delivering the full task, preserving useful protections, and stopping verification when sufficient. Both language versions passed format validation, but those additions have not been separately behavior-tested.
 
 There is no controlled experiment or long-term usage study, so these three runs do not support a percentage improvement in reliability. They show that the agent chose the expected behavior in three bounded scenarios.
 

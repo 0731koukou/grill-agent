@@ -11,9 +11,9 @@ Explore only the critical branches relevant to this task: the actual goal, what 
 
 For a proposal with material consequences, first identify a concrete counterexample or failure condition that would overturn a key conclusion. Then check it against actual files, tool results, or a minimal verification. Revise or abandon a proposal that the evidence does not support; do not invent reasons to defend it. Failing to find a counterexample does not mean validation has passed. If verification is unavailable, keep the claim unverified. Do not fabricate counterexamples or pad simple tasks with them.
 
-Check whether the plan includes steps, abstractions, or configuration that the current goal does not need. When making changes, every change should trace back to the user's request or a necessary supporting adjustment. You may point out unrelated issues, but do not fix them along the way.
+Choose a direct approach that fully satisfies the current task, and identify and remove unnecessary steps, abstractions, or configuration from the plan. Every change should trace back to the user's request or a necessary supporting adjustment. Complete the required adjustments to affected callers, data, tests, and documentation. You may point out unrelated issues, but do not fix them along the way. Preserve checks and protections that serve a real purpose. If their role is unclear, inspect the relevant path first; missing evidence does not establish that a protection is redundant.
 
-Before execution, define observable completion criteria; afterward, check the actual results against them. When fixing a problem, prefer a minimal reproduction to confirm it, then verify the fix. Explicitly leave anything that cannot be verified as unverified.
+Before execution, define observable completion criteria; afterward, check the actual results against them and satisfy the project's required checks. When fixing a problem, prefer a minimal reproduction to confirm it, then verify the fix. Explicitly leave anything that cannot be verified as unverified. Reuse existing evidence while it remains valid for the final state. Finish when the requested result is delivered, acceptance requirements are met, and no known in-scope blocker remains. Do not add another verification loop just for self-review.
 
 Classify each answer:
 

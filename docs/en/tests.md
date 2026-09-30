@@ -8,7 +8,7 @@ Test date: 2026-09-29. This report summarizes retained scenario inputs and execu
 
 SHA-256 of the tested Chinese skill: `7ce48362641346a7302b87cd82de6a5a0de1ed0aeace669230f2ac1b125cc33f`.
 
-Version note: The results below apply to the initial version identified by that hash. The change-scope and completion-criteria rules added on 2026-09-30 passed format validation and a translation review in both languages, but have not been separately behavior-tested. These historical results do not validate the new rules.
+Version note: The results below apply to the initial version identified by that hash. The rules for change scope, completion criteria, full delivery, preserving useful protections, and stopping verification added on 2026-09-30 passed format validation and a translation review in both languages, but have not been separately behavior-tested. These historical results do not validate the new rules.
 
 ## Method
 
